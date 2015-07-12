@@ -6,12 +6,16 @@
 
   <body>
 
-  	<div id="wrapper">
-	  	<div id="header">{{template "navigation"}}</div>
+  	<div id="body">
+	  	<div id="header">{{template "navigation" .}}</div>
 	    
-	    <div id="content">Hello world</div>
+	    <div id="content">
+	    	{{template "news" .}}
 
-	    <div id="footer">{{template "footer"}}</div>
+	    	{{template "categories" .Categories}}
+	    </div>
+
+	    <div id="footer">{{template "footer" .}}</div>
     </div>
 
   </body>
