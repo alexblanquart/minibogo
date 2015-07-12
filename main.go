@@ -1,7 +1,10 @@
 package main
 
 import (
+	"github.com/russross/blackfriday"
 	"html/template"
+	"io/ioutil"
+	"log"
 	"net/http"
 )
 
@@ -25,7 +28,14 @@ var categories = Categories{
 	{Label: "Mon coin couture", Image: "static/images/couture1.png"},
 	{Label: "Mes petits objets en carton", Image: "static/images/carton_categ.png"},
 }
-var templates = template.Must(template.ParseGlob("templates/*")) // compile all templates and cache them
+
+// Compile all templates and cache them. Add special funcs at the end.
+var templates = template.Must(template.New("main").Funcs(template.FuncMap{"markDown": markDowner}).ParseGlob("templates/*"))
+
+func markDowner(content []byte) template.HTML {
+	s := blackfriday.MarkdownCommon(content)
+	return template.HTML(s)
+}
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	err := templates.ExecuteTemplate(w, "index", IndexContent{Categories: categories})
@@ -43,6 +53,17 @@ func contactHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func aboutHandler(w http.ResponseWriter, r *http.Request) {
+	markdownContent, err := ioutil.ReadFile("markdown/about.md")
+	if err != nil {
+		log.Fatal(err)
+	}
+	if err := templates.ExecuteTemplate(w, "about", markdownContent); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
+
 func main() {
 	// Serve static content
 	fs := http.FileServer(http.Dir("static"))
@@ -51,6 +72,7 @@ func main() {
 	// Routing
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/contact", contactHandler)
+	http.HandleFunc("/about", aboutHandler)
 
 	// Start server
 	http.ListenAndServe(":8080", nil)

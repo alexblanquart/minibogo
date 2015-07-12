@@ -30,3 +30,9 @@ footer {
 section {
     padding: 100px 0;
 }
+
+.thumbnail {
+	/* get rid of the border around thumbnails */
+    border: 0 none;
+    box-shadow: none;
+}
