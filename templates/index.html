@@ -7,16 +7,18 @@
   <body>
 
   	<div id="body">
-	  	<div id="header">{{template "navigation" .}}</div>
+	  	<div id="header">{{template "navigation"}}</div>
 	    
 	    <div id="content">
-	    	{{template "news" .}}
+	    	{{template "news"}}
 
 	    	{{template "categories" .Categories}}
 	    </div>
 
-	    <div id="footer">{{template "footer" .}}</div>
+	    <div id="footer"></div>
     </div>
+
+    {{template "footer"}}
 
   </body>
 

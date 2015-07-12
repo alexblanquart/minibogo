@@ -35,13 +35,22 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func contactHandler(w http.ResponseWriter, r *http.Request) {
+	err := templates.ExecuteTemplate(w, "contact", nil)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
+
 func main() {
 	// Serve static content
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	// For now only index
+	// Routing
 	http.HandleFunc("/", indexHandler)
+	http.HandleFunc("/contact", contactHandler)
 
 	// Start server
 	http.ListenAndServe(":8080", nil)
