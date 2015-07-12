@@ -4,7 +4,6 @@ import (
 	"github.com/russross/blackfriday"
 	"html/template"
 	"io/ioutil"
-	"log"
 	"net/http"
 )
 
@@ -56,9 +55,18 @@ func contactHandler(w http.ResponseWriter, r *http.Request) {
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
 	markdownContent, err := ioutil.ReadFile("markdown/about.md")
 	if err != nil {
-		log.Fatal(err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 	if err := templates.ExecuteTemplate(w, "about", markdownContent); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
+
+func blogHandler(w http.ResponseWriter, r *http.Request) {
+	err := templates.ExecuteTemplate(w, "blog", nil)
+	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -73,6 +81,7 @@ func main() {
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/contact", contactHandler)
 	http.HandleFunc("/about", aboutHandler)
+	http.HandleFunc("/blog", blogHandler)
 
 	// Start server
 	http.ListenAndServe(":8080", nil)
