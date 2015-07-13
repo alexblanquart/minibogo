@@ -13,52 +13,22 @@
       	<section>
   <div class="container">
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-12">
         <div class="grid">
-            <div class="grid-item">
+            {{range .}}<div class="grid-item">
                 <div class="thumbnail">
                     <img data-src="holder.js/200x200">
                     <div class="caption">
-                      <h3>Thumbnail label</h3>
-                      <p>Cras vehicula a magna finibus vestibulum. Sed eleifend ornare tortor ac auctor. Pellentesque feugiat nisl et purus tempor fermentum.</p>
+                      <h3>{{.Title}}</h3>
+                      <p>{{.Date}}</p>
                       <p><a href="post.html" class="btn btn-primary" role="button">En savoir plus</a></p>
                     </div>
                 </div>
-            </div>
-            <div class="grid-item">
-              <div class="thumbnail">
-                  <img data-src="holder.js/200x200">
-                    <div class="caption">
-                      <h3>Thumbnail label</h3>
-                      <p>Proin lobortis ex ut augue tristique posuere. Proin bibendum augue quam, eu convallis quam gravida at. Morbi ac porttitor tellus, vel consequat diam. Nam id blandit elit. Nullam tempor mi vel nibh sollicitudin, vel ornare mauris congue. Maecenas ultrices ultricies nisi, a iaculis dolor imperdiet sit amet. Etiam interdum nisi tortor, et aliquam purus ultricies ac. Sed vestibulum dignissim elementum. Nulla sed ornare eros, et finibus ligula. Aliquam eget orci fermentum, luctus nisi nec, feugiat eros. Suspendisse potenti. Nunc sodales dui dolor, in vulputate elit hendrerit vitae. Vivamus dictum egestas leo, vitae tristique sem malesuada ut. Integer sodales ac massa eget condimentum.</p>
-                      <p><a href="post.html" class="btn btn-primary" role="button">En savoir plus</a></p>
-                    </div>
-                </div>
-              </div>
-              <div class="grid-item">
-                <div class="thumbnail">
-                  <img data-src="holder.js/200x200">
-                    <div class="caption">
-                      <h3>Thumbnail label</h3>
-                      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque pulvinar ipsum ac fermentum dignissim. Vivamus nec sem purus. Culum accumsan porttitor massa, quis porta risus blandit a. Etiam vitae porta lectus, at ornare mi. Ut eget leo ac tellus dictum scelerisque quis a lacus.</p>
-                      <p><a href="post.html" class="btn btn-primary" role="button">En savoir plus</a></p>
-                    </div>
-                </div>
-              </div>
-              <div class="grid-item">
-                <div class="thumbnail">
-                  <img data-src="holder.js/200x200">
-                    <div class="caption">
-                      <h3>Thumbnail label</h3>
-                      <p>Pellentesque habitant.</p>
-                      <p><a href="post.html" class="btn btn-primary" role="button">En savoir plus</a></p>
-                    </div>
-                </div>
-              </div>
+            </div>{{end}}
           </div>
       </div>
 
-      <div class="col-sm-3">
+      <!--<div class="col-sm-3">
         <div id="recentPosts" class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">Posts récents</h3>
@@ -100,7 +70,7 @@
           </div>
         </div>
       </div>
-      </div>
+      </div>-->
   </div>
 </section>
       </div>

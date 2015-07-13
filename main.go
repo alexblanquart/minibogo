@@ -1,14 +1,16 @@
 package main
 
 import (
-	"github.com/russross/blackfriday"
+	"encoding/json"
 	"html/template"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/russross/blackfriday"
 )
 
 type Category struct {
-	Label string
+	Title string
 	Image string
 }
 
@@ -20,56 +22,71 @@ type IndexContent struct {
 
 // Initialize some global variables
 var categories = Categories{
-	{Label: "Univers jouets enfants", Image: "/static/images/coin_jouets_poupees.png"},
-	{Label: "Mes projets en cours", Image: "/static/images/projets_en_cours.png"},
-	{Label: "Aux pinceaux!", Image: "/static/images/aux_pinceaux.png"},
-	{Label: "Mes plaids tout doux", Image: "/static/images/patc_quilt_plaid.png"},
-	{Label: "Mon coin couture", Image: "static/images/couture1.png"},
-	{Label: "Mes petits objets en carton", Image: "static/images/carton_categ.png"},
+	{Title: "Univers jouets enfants", Image: "/static/images/coin_jouets_poupees.png"},
+	{Title: "Mes projets en cours", Image: "/static/images/projets_en_cours.png"},
+	{Title: "Aux pinceaux!", Image: "/static/images/aux_pinceaux.png"},
+	{Title: "Mes plaids tout doux", Image: "/static/images/patc_quilt_plaid.png"},
+	{Title: "Mon coin couture", Image: "static/images/couture1.png"},
+	{Title: "Mes petits objets en carton", Image: "static/images/carton_categ.png"},
+}
+
+type Post struct {
+	Title   string `json:"title"`
+	Content string `json:"content"`
+	Date    string `json:"date"`
+}
+
+type BlogContent struct {
+	Posts []Post
 }
 
 // Compile all templates and cache them. Add special funcs at the end.
 var templates = template.Must(template.New("main").Funcs(template.FuncMap{"markDown": markDowner}).ParseGlob("templates/*"))
 
+// Transform content in markdown into html.
+// To be used as a pipeline inside templates.
 func markDowner(content []byte) template.HTML {
 	s := blackfriday.MarkdownCommon(content)
 	return template.HTML(s)
 }
 
-func indexHandler(w http.ResponseWriter, r *http.Request) {
-	err := templates.ExecuteTemplate(w, "index", IndexContent{Categories: categories})
+func renderTemplate(w http.ResponseWriter, name string, data interface{}) {
+	err := templates.ExecuteTemplate(w, name, data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+}
+
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	renderTemplate(w, "index", IndexContent{Categories: categories})
 }
 
 func contactHandler(w http.ResponseWriter, r *http.Request) {
-	err := templates.ExecuteTemplate(w, "contact", nil)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	renderTemplate(w, "contact", nil)
 }
 
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
-	markdownContent, err := ioutil.ReadFile("markdown/about.md")
+	markdownContent, err := ioutil.ReadFile("content/about.md")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	if err := templates.ExecuteTemplate(w, "about", markdownContent); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	renderTemplate(w, "about", markdownContent)
 }
 
 func blogHandler(w http.ResponseWriter, r *http.Request) {
-	err := templates.ExecuteTemplate(w, "blog", nil)
+	postsAsJson, err := ioutil.ReadFile("content/posts.json")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	posts := []Post{}
+	if err := json.Unmarshal(postsAsJson, &posts); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	renderTemplate(w, "blog", posts)
 }
 
 func main() {
