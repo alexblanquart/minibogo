@@ -2,11 +2,11 @@ package main
 
 import (
 	"encoding/json"
+	"github.com/russross/blackfriday"
 	"html/template"
 	"io/ioutil"
 	"net/http"
-
-	"github.com/russross/blackfriday"
+	"time"
 )
 
 type Category struct {
@@ -32,6 +32,7 @@ var categories = Categories{
 
 type Post struct {
 	Title   string `json:"title"`
+	Image   string `json:"image"`
 	Content string `json:"content"`
 	Date    string `json:"date"`
 }
@@ -40,14 +41,23 @@ type BlogContent struct {
 	Posts []Post
 }
 
-// Compile all templates and cache them. Add special funcs at the end.
-var templates = template.Must(template.New("main").Funcs(template.FuncMap{"markDown": markDowner}).ParseGlob("templates/*"))
+// Compile all templates and cache them. Add special pipelines.
+var templates = template.Must(template.New("main").Funcs(template.FuncMap{"markDown": markDowner, "time": userFriendlyTimer}).ParseGlob("templates/*"))
 
 // Transform content in markdown into html.
-// To be used as a pipeline inside templates.
 func markDowner(content []byte) template.HTML {
 	s := blackfriday.MarkdownCommon(content)
 	return template.HTML(s)
+}
+
+// Transform date in from a specific layout into another one more friendly for users
+func userFriendlyTimer(date string) string {
+	parsed, err := time.Parse("Mon, 02 Jan 2006 15:04:05", date)
+	if err == nil {
+		return parsed.Format("02/01/2006") // see for internationalization later
+	} else {
+		return date
+	}
 }
 
 func renderTemplate(w http.ResponseWriter, name string, data interface{}) {

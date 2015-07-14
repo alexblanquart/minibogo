@@ -1,3 +1,3 @@
 imagesLoaded( '.grid', function(grid) {
-	var msnry = new Masonry( '.grid', { itemSelector: '.grid-item' });
+	var msnry = new Masonry( '.grid', { itemSelector: '.grid-item', columnWidth: 1, gutter:0});
 });	
