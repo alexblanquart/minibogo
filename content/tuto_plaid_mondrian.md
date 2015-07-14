@@ -5,3 +5,7 @@ C’était mon premier plaid « patchwork » improvisé !!! J’ai pris 10 heure
 Je l’ai offert l’année dernière à Noel à ma belle mère, elle est fan de Mondrian et moi aussi d’ailleurs!! L’effet dans son Home Cinéma est magnifique …. Il est beau ce Mondrian non?!!!!!!
 
 Donc je vous propose de découvrir le tutoriel :) (Voir Catégorie Conditions d’utilisation de ce Blog.)
+
+![](tuto-mondrian1.jpg)
+![](tuto-mondrian2.jpg)
+![](image6.jpg)

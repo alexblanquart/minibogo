@@ -12,3 +12,9 @@ Je l’ai fait pour la petite Gabrielle de 2 ans! J’espère qu’elle sera heu
 
 Je vous laisse un coup d’oeil , J’attendrai les photos avec impatience de la petite Gabrielle :)
 
+![](p1180978.jpg)
+![](p1180974.jpg)
+![](p1180979.jpg)
+![](p1180992.jpg)
+![](p1180993.jpg)
+

@@ -1,3 +1,5 @@
+![](image13.jpg)
+
 Ce tableau je l’ai en deux versions une à huile (celle-ci) et une autre en acrylique qui est au New Jersey dans la maison de mon best friend forever !!! ;))
 
 J’ai joué avec les couleurs froides et chaudes …  et dans ce tableau il y a un secret … ;)

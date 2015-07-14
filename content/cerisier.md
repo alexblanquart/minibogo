@@ -5,3 +5,5 @@ Aujourd’hui je vais vous parler du tableau cerisier japonais… J’ai appris 
 L’exercice consiste en réalisé à l’aide d’une photographie de réaliser la technique du fusain et du crayon pastel… D’abord j’ai dessiné à échelle le tronc avec le fusain et puis j’ai travaillé avec le crayon à pastel le cerisier…
 
 C’est plutôt pas mal non ?! :)
+
+![](image7.jpg)

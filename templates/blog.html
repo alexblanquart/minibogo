@@ -13,8 +13,8 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="grid">
-            {{range .}}<a href="/blog"><div class="grid-item thumbnail text-center">
-              <img src="/static/images/{{.Image}}" class="img-responsive">
+            {{range .}}<a href="/post/{{.ID}}"><div class="grid-item text-center">
+              <img src="{{.Image | thumbnail}}">
               <div class="caption">
                 <h4>{{.Title}}</h4>
               </div>

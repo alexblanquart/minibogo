@@ -4,6 +4,11 @@ J’ai passé 3 heures juste pour coudre 20 cm car la ligne cassait, et l’aigu
 
 J’ai du improviser mes cadeaux de Noël… Milles mercis au patron cours de couture facile et rapide…. j’ai réalisé plusieurs sacs Toto bag avec une veille singer en 1h30.
 
- 
-
 Voici les jolis résultats de ma collection :)
+
+![](toto.jpg)
+![](toto1.jpg)
+![](toto4.jpg)
+![](toto5.jpg)
+![](toto6.jpg)
+![](toto77.jpg)

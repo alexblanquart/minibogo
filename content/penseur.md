@@ -7,3 +7,5 @@ J’ai pris une photo que j’avais d’une personne de la famille en train de l
 Cela devait être un cadeau pour ma belle mère, mais pour finir je l’ai gardé dans mon salon et j’ai fini par faire quelque chose de plus abstrait pour elle.
 
 Qu’en pensez-vous ? ;)
+
+![](image14.jpg)

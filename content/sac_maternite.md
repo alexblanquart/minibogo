@@ -2,7 +2,7 @@ Aujourd’hui je vous montre un des mes préférés….l’ensemble sac à mater
 
 Je vous avoue que j’ai un peu galéré pour dessiner et trouver les bonnes mesures de mon sac ! J’ai acheté le livre de Lisa Lam : The bag Making Bible qui m’a aidé à comprendre comment faire les poches de mon joli sac :)!
 
-
+![](capture-d_c3a9cran-2014-10-28-c3a0-21-57-47.jpg)
 
 Elle explique très bien toutes les techniques requises pour créer vos patrons et faire vos propres sacs !
 
@@ -15,3 +15,5 @@ J’ai pris du temps pour le faire puisqu’à l’époque j’avais encore une 
 Une toute vielle qui ne marche plus, j’ai pris 1 semaine, j’ai démontée la machine et j’ai assemblé les pièces une à une et à la tcharammmm il a remarché !!!
 
 Je l’ai encore et je m’en sers en cas dépannage !!
+
+![](image18.jpg)

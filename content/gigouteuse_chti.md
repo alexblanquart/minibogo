@@ -6,3 +6,5 @@ J’ai pris un dessin des pingouins récupérés sur internet, car quand je l’
 
 L’effet est joli, pour ma première pièce vêtement je suis bien contente, ça va non ?
 
+![](image19.jpg)
+

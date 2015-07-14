@@ -2,11 +2,11 @@ Temps de travail: Création du patron: 2 Heures * Réalisation de la coupe et as
 
 Mon nouveau sac, un mélange de tissu microfibre beige (achetez chez Buttinette.com), de tissu d’ameublement: carte du monde (acheté à Courtrai – salon marché du tissu) et avec une doublure rose à motifs (acheté chez Mondial tissus).
 
-
+![](sac21.jpg)
 
 J’ai pris un peu de temps pour concevoir le patron, mais bon j’ai enfin réussi à trouver la bonne taille et la bonne technique!
 
-
+![](sac-a-cabas-tuto.jpg)
 
 En fait, créer en couture c’est un peu comme une recette culinaire, on réajuste jusqu’au moment de trouver le bon ingrédient!
 
@@ -15,3 +15,6 @@ J’ai déjà un autre modèle en route avec les mêmes tissus pour mettre mon M
 J’essaierai aussi de publier les tutos… J’ai tellement de choses en marche en ce moment … que je me vois divisée en 4!
 
 Mais je vous laisse découvrir le nouveau sac, c’est chouette non ?:)
+
+![](sans-titre.jpg)
+![](sac42.jpg)

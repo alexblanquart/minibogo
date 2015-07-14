@@ -2,15 +2,21 @@ Aujourd’hui je vous parle de Cartonnage ! Je vous montre un des mes premiers D
 
 Pour apprendre à le faire j’ai suivi un tutoriel Brésilien que vous pouvez consultez dans un magazine intitulée « Revista Ateliê na TV »:
 
+![](1.jpg)
 
+![](2.jpg)
 
+![](3.jpg)
 
+![](4.jpg)
 
+![](5.jpg)
+
+![](6.jpg)
 
 C’était ma toute première boite en cartonnage et je suis fière du résultat ! :D Ce tuto explique très bien le pas à pas … Si vous avez des problèmes pour comprendre la langue n’hésitez pas à me dire ! Et voici le résultat de ma boîte à moi:
 
-
-
+![](image23.jpg)
 
 (Note: pour réduire les frais, dans l’étape 51: j’ai crée ma propre anse. J’ai récupéré une vieille boîte de plastique des jouets de mon fils et j’ai coupé une bande de 25 cm x 4 cm. Ensuite j’ai collé du molleton sur la bande de plastique et pour finaliser j’ai collé le tissu!!).
 
