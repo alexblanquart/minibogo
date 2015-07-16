@@ -2,13 +2,14 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/russross/blackfriday"
 	"html/template"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"path/filepath"
 	"time"
+
+	"github.com/russross/blackfriday"
 )
 
 type Category struct {
@@ -46,8 +47,16 @@ type BlogContent struct {
 }
 
 // Compile all templates and cache them. Add special pipelines.
-var templates = template.Must(template.New("main").Funcs(template.FuncMap{"markDown": markDowner,
-	"time": userFriendlyTimer, "thumbnail": thumbnailer}).ParseGlob("templates/*"))
+//var templates = template.Must(template.New("main").Funcs(template.FuncMap{"markDown": markDowner, "time": userFriendlyTimer, "thumbnail": thumbnailer}).ParseGlob("templates/*"))
+
+var baseTempl = template.Must(template.New("base").ParseFiles(
+	"templates/base.html", "templates/header.html", "templates/navigation.html", "templates/footer.html"))
+
+var indexTempl = template.Must(template.New("index").ParseFiles("templates/base.html", "templates/index.html"))
+var blogTempl = template.Must(template.New("blog").Funcs(template.FuncMap{"thumbnail": thumbnailer}).ParseFiles("templates/base.html", "templates/blog.html"))
+var postTempl = template.Must(template.New("post").Funcs(template.FuncMap{"markDown": markDowner}).ParseFiles("templates/base.html", "templates/post.html"))
+var aboutTempl = template.Must(template.New("about").Funcs(template.FuncMap{"markDown": markDowner}).ParseFiles("templates/base.html", "templates/about.html"))
+var contactTempl = template.Must(template.New("contact").ParseFiles("templates/base.html", "templates/contact.html"))
 
 // From a path, try to find the thumbnail associated image in the special directory
 func thumbnailer(path string) string {
@@ -77,8 +86,8 @@ func userFriendlyTimer(date string) string {
 	}
 }
 
-func renderTemplate(w http.ResponseWriter, name string, data interface{}) {
-	err := templates.ExecuteTemplate(w, name, data)
+func renderTemplate(w http.ResponseWriter, tmpl *template.Template, data interface{}) {
+	err := tmpl.ExecuteTemplate(w, "base", data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -86,11 +95,11 @@ func renderTemplate(w http.ResponseWriter, name string, data interface{}) {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	renderTemplate(w, "index", IndexContent{Categories: categories})
+	renderTemplate(w, indexTempl, IndexContent{Categories: categories})
 }
 
 func contactHandler(w http.ResponseWriter, r *http.Request) {
-	renderTemplate(w, "contact", nil)
+	renderTemplate(w, contactTempl, nil)
 }
 
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
@@ -99,7 +108,7 @@ func aboutHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	renderTemplate(w, "about", content)
+	renderTemplate(w, aboutTempl, content)
 }
 
 func getContent(name string) ([]byte, error) {
@@ -112,7 +121,7 @@ func blogHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	renderTemplate(w, "blog", posts)
+	renderTemplate(w, blogTempl, posts)
 }
 
 func getPosts() ([]Post, error) {
@@ -146,7 +155,7 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	post.Content = content
-	renderTemplate(w, "post", post)
+	renderTemplate(w, postTempl, post)
 }
 
 func main() {

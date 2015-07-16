@@ -2,13 +2,14 @@ package main
 
 import (
 	"flag"
-	"github.com/nfnt/resize"
 	"image"
 	_ "image/jpeg"
 	"image/png"
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/nfnt/resize"
 )
 
 func resizer(path string, f os.FileInfo, err error) error {
@@ -50,9 +51,13 @@ func resizer(path string, f os.FileInfo, err error) error {
 }
 
 func main() {
-	// get directory to walk
+	// get directory to walk : the 1st argument
 	flag.Parse()
-	root := flag.Arg(0) // 1st argument is the directory location
+	if flag.NArg() == 0 {
+		log.Printf("usage : resizer directory")
+		os.Exit(2)
+	}
+	root := flag.Arg(0)
 
 	// renew thumbnails directory no matter what
 	thumbsPath := "static/images/thumbs"

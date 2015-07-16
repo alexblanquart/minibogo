@@ -1,59 +1,37 @@
-{{define "contact"}}
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
-
-  {{template "header"}}
-
-  <body>
-
-    <div id="body">
-      <div id="header">{{template "navigation" .}}</div>
-      
-      <div id="content">
-        <section>
-          <div class="container">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                  <h1>Contact</h1>
-                </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6 col-sm-offset-3">
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <a href="https://www.facebook.com/minibohomemade">
-                      <i class="fa fa-facebook-square fa-3x"></i>
-                    </a>
-                    <i class="fa fa-pinterest-square fa-3x"></i>
-                    <i class="fa fa-instagram fa-3x"></i>
-                  </div>
-                </div>
-                <form>
-                  <div class="form-group">
-                    <label for="inputName">Nom</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Votre nom">
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail">Adresse email</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Votre email">
-                  </div>
-                  <div class="form-group">
-                    <label for="inputText">Message</label>
-                    <textarea id="inputText" class="form-control" rows="5" placeholder="Laissez moi votre message. Je vous répondrai rapidement!"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
+{{define "content"}}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <h1>Contact</h1>
     </div>
-
-    {{template "footer" .}}
-
-  </body>
-
-</html>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <a href="https://www.facebook.com/minibohomemade">
+            <i class="fa fa-facebook-square fa-3x"></i>
+          </a>
+          <i class="fa fa-pinterest-square fa-3x"></i>
+          <i class="fa fa-instagram fa-3x"></i>
+        </div>
+      </div>
+      <form>
+        <div class="form-group">
+          <label for="inputName">Nom</label>
+          <input type="text" class="form-control" id="inputName" placeholder="Votre nom">
+        </div>
+        <div class="form-group">
+          <label for="inputEmail">Adresse email</label>
+          <input type="email" class="form-control" id="inputEmail" placeholder="Votre email">
+        </div>
+        <div class="form-group">
+          <label for="inputText">Message</label>
+          <textarea id="inputText" class="form-control" rows="5" placeholder="Laissez moi votre message. Je vous répondrai rapidement!"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</div>
 {{end}}

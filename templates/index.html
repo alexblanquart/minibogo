@@ -1,26 +1,5 @@
-{{define "index"}}
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+{{define "content"}}
+	{{template "news"}}
 
-  {{template "header"}}
-
-  <body>
-
-  	<div id="body">
-	  	<div id="header">{{template "navigation"}}</div>
-	    
-	    <div id="content">
-	    	{{template "news"}}
-
-	    	{{template "categories" .Categories}}
-	    </div>
-
-	    <div id="footer"></div>
-    </div>
-
-    {{template "footer"}}
-
-  </body>
-
-</html>
+	{{template "categories" .Categories}}
 {{end}}

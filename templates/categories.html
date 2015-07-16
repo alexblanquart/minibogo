@@ -1,21 +1,19 @@
 {{define "categories"}}
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <h1>Catégories</h1>
-            </div>
-        </div>
-        <div class="row">
-            {{range .}}<div class="col-sm-6 col-md-4">
-        		<div class="thumbnail">
-			    	<img src="/static/images/thumbs/{{ .Image }}">
-			      	<div class="caption text-center">
-			        	<h3>{{ .Title }}</h3>
-			      	</div>
-			    </div>
-            </div>{{end}}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h1>Catégories</h1>
         </div>
     </div>
-</section>
+    <div class="row">
+        {{range .}}<div class="col-sm-6 col-md-4">
+        	<div class="thumbnail">
+			     <img src="/static/images/thumbs/{{ .Image }}">
+			     <div class="caption text-center">
+			         <h3>{{ .Title }}</h3>
+			     </div>
+			 </div>
+        </div>{{end}}
+    </div>
+</div>
 {{end}}

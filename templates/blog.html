@@ -1,15 +1,5 @@
-{{define "blog"}}
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
-
-  {{template "header"}}
-
-  <body>
-
-    {{template "navigation"}}
-
-<section>
-  <div class="container">
+{{define "content"}}
+<div class="container">
     <div class="row">
       <div class="col-sm-12">
         <div class="grid">
@@ -21,18 +11,11 @@
             </div></a>{{end}}
           </div>
       </div>
-  </div>
-</section>
-
-   	{{template "footer"}}
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.8.0/holder.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="/static/js/app.js"></script>
-
-  </body>
-
-</html>
+</div>
 {{end}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.8.0/holder.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="/static/js/app.js"></script>
