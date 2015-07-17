@@ -48,15 +48,17 @@ type BlogContent struct {
 
 // Compile all templates and cache them. Add special pipelines.
 //var templates = template.Must(template.New("main").Funcs(template.FuncMap{"markDown": markDowner, "time": userFriendlyTimer, "thumbnail": thumbnailer}).ParseGlob("templates/*"))
+var baseTemplate = template.Must(template.New("base").Funcs(template.FuncMap{"markDown": markDowner, "time": userFriendlyTimer, "thumbnail": thumbnailer}).ParseFiles("templates/base.html", "templates/header.html", "templates/navigation.html", "templates/footer.html"))
 
-var baseTempl = template.Must(template.New("base").ParseFiles(
-	"templates/base.html", "templates/header.html", "templates/navigation.html", "templates/footer.html"))
+var indexTempl = getTemplate("templates/index.html", "templates/categories.html", "templates/news.html")
+var blogTempl = getTemplate("templates/blog.html")
+var postTempl = getTemplate("templates/post.html")
+var aboutTempl = getTemplate("templates/about.html")
+var contactTempl = getTemplate("templates/contact.html")
 
-var indexTempl = template.Must(template.New("index").ParseFiles("templates/base.html", "templates/index.html"))
-var blogTempl = template.Must(template.New("blog").Funcs(template.FuncMap{"thumbnail": thumbnailer}).ParseFiles("templates/base.html", "templates/blog.html"))
-var postTempl = template.Must(template.New("post").Funcs(template.FuncMap{"markDown": markDowner}).ParseFiles("templates/base.html", "templates/post.html"))
-var aboutTempl = template.Must(template.New("about").Funcs(template.FuncMap{"markDown": markDowner}).ParseFiles("templates/base.html", "templates/about.html"))
-var contactTempl = template.Must(template.New("contact").ParseFiles("templates/base.html", "templates/contact.html"))
+func getTemplate(filenames ...string) *template.Template {
+	return template.Must(template.Must(baseTemplate.Clone()).ParseFiles(filenames...))
+}
 
 // From a path, try to find the thumbnail associated image in the special directory
 func thumbnailer(path string) string {
@@ -87,7 +89,7 @@ func userFriendlyTimer(date string) string {
 }
 
 func renderTemplate(w http.ResponseWriter, tmpl *template.Template, data interface{}) {
-	err := tmpl.ExecuteTemplate(w, "base", data)
+	err := tmpl.Execute(w, data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

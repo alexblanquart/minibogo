@@ -1,6 +1,4 @@
-![](/static/images/exemples_groupes.png)
-
-# Pourquoi ce site
+## Pourquoi ce site
 
 Passionée par les arts le but de ce blog est de partager un peu de mon petit monde à moi. ;)
 
@@ -12,6 +10,6 @@ Je partage beaucoup de mon savoir-faire avec mon entourage et ça y est à la de
 
 J’espère apprendre et partager avec vous…
 
-# Remerciements
+## Remerciements
 
 Je remercie bien sûr mon mari [Alexandre Blanquart](https://twitter.com/alexblanquart), qui a mis en place ce site aux petits oignons !
