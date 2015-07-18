@@ -34,11 +34,12 @@ var categories = []Category{
 }
 
 type Post struct {
-	ID      string `json:"id"`
-	Title   string `json:"title"`
-	Image   string `json:"image"`
-	Text    string `json:"text"`
-	Date    string `json:"date"`
+	ID      string   `json:"id"`
+	Title   string   `json:"title"`
+	Image   string   `json:"image"`
+	Text    string   `json:"text"`
+	Date    string   `json:"date"`
+	Tags    []string `json:"tags"`
 	Content []byte
 }
 
@@ -72,9 +73,10 @@ func thumbnailer(path string) string {
 	nameWithoutExt := name[:len(name)-len(ext)]
 	newPath := "static/images/thumbs/" + nameWithoutExt + ".png"
 	if _, err := os.Stat(newPath); os.IsNotExist(err) {
-		newPath = "holder.js/340x340"
+		return "holder.js/340x340"
+	} else {
+		return "/" + newPath
 	}
-	return newPath
 }
 
 // Transform content in markdown into html.
@@ -113,8 +115,8 @@ func getContent(name string) ([]byte, error) {
 }
 
 type BlogContent struct {
-	Posts      []Post
-	Categories []Category
+	Posts []Post
+	Tags  []string
 }
 
 func blogHandler(w http.ResponseWriter, r *http.Request) {
@@ -123,7 +125,33 @@ func blogHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	renderTemplate(w, blogTempl, BlogContent{Posts: posts, Categories: categories})
+	var tags = []string{"tous"}
+	var setOfTags = map[string]bool{}
+	for _, p := range posts {
+		for _, t := range p.Tags {
+			if !setOfTags[t] {
+				tags = append(tags, t)
+				setOfTags[t] = true
+			}
+		}
+
+	}
+	tag := r.URL.Path[6:] // from pattern "/blog/{{tag}}"
+	var filtered = []Post{}
+	if tag != "" && tag != "tous" {
+		for _, p := range posts {
+			for _, t := range p.Tags {
+				if tag == t {
+					filtered = append(filtered, p)
+					continue
+				}
+			}
+		}
+	} else {
+		filtered = posts
+	}
+
+	renderTemplate(w, blogTempl, BlogContent{Posts: filtered, Tags: tags})
 }
 
 func getPosts() ([]Post, error) {
@@ -168,7 +196,7 @@ func main() {
 	// Routing
 	http.HandleFunc("/contact", contactHandler)
 	http.HandleFunc("/about", aboutHandler)
-	http.HandleFunc("/blog", blogHandler)
+	http.HandleFunc("/blog/", blogHandler)
 	http.HandleFunc("/post/", postHandler)
 	http.HandleFunc("/", indexHandler)
 

@@ -19,13 +19,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">Présentation</div>
-          <div class="panel-body">
-              Descriptif
-          </div>
-        </div>
+      <div class="col-sm-4"> <!-- see later to affix it -->
         <div class="panel panel-default">
           <div class="panel-heading">Recherche</div>
           <div class="panel-body">
@@ -33,9 +27,15 @@
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading">Catégories</div>
+          <div class="panel-heading">Articles récents</div>
           <div class="panel-body">
-              {{range $i, $cat := .Categories}}<p><a href="/blog/{{$cat.Title}}"></a></p>{{end}}
+              
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">Mots clés</div>
+          <div class="panel-body">
+              {{range $i, $tag := .Tags}}<button type="button" class="btn btn-link"><a href="/blog/{{$tag}}">{{$tag}}</a></button>{{end}}
           </div>
         </div>
       </div>

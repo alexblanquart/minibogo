@@ -4,7 +4,7 @@
 	"title": "Les amoureuses",
 	"image": "les-amoureuses.jpg",
 	"text": "amoureuses.md",
-	"categories": [],
+	"tags": ["peinture", "amour"],
 	"date": "Tue, 07 Oct 2014 20:52:39"
 },
 {
@@ -12,7 +12,7 @@
 	"title": "Les amoureux",
 	"image": "image11.jpg",
 	"text": "amoureux.md",
-	"categories": [],
+	"tags": ["peinture", "amour"],
 	"date": "Sun, 05 Oct 2014 21:59:34"
 },
 {
@@ -20,7 +20,7 @@
 	"title": "Boite à Bijoux geisha",
 	"image": "image24.jpg",
 	"text": "boite_bijoux_geisha.md",
-	"categories": [],
+	"tags": ["boîte", "bijoux", "geisha"],
 	"date": "Sat, 25 Oct 2014 18:46:26"
 },
 {
@@ -28,7 +28,7 @@
 	"title": "Boite à oiseaux tout mimi...",
 	"image": "image22.jpg",
 	"text": "boite_oiseaux.md",
-	"categories": [],
+	"tags": ["boîte", "oiseaux"],
 	"date": "Wed, 29 Oct 2014 19:57:13"
 },
 {
@@ -36,7 +36,7 @@
 	"title": "Le cerisier",
 	"image": "image7.jpg",
 	"text": "cerisier.md",
-	"categories": [],
+	"tags": ["peinture", "fruits"],
 	"date": "Sun, 12 Oct 2014 19:39:34"
 },
 {
@@ -44,7 +44,7 @@
 	"title": "Et c'est parti.... :)",
 	"image": "",
 	"text": "et_cest_parti.md",
-	"categories": [],
+	"tags": ["annonce"],
 	"date": "Sat, 13 Sep 2014 21:24:11"
 },
 {
@@ -52,7 +52,7 @@
 	"title": "Conditions d'utilisation",
 	"image": "",
 	"text": "conditions_utilisation.md",
-	"categories": [],
+	"tags": ["annonce"],
 	"date": "Sat, 13 Sep 2014 21:36:48"
 },
 {
@@ -60,7 +60,7 @@
 	"title": "Gigoteuse de ch’ti (il drache) - taille 6 à 18 mois",
 	"image": "image19.jpg",
 	"text": "gigouteuse_chti.md",
-	"categories": [],
+	"tags": ["gigoteuse", "chti", "pluie"],
 	"date": "Mon, 03 Nov 2014 20:52:19"
 },
 {
@@ -68,7 +68,7 @@
 	"title": "Joyeux Noël et Bonne Année ! :) Pochettes maquillage réveillon",
 	"image": "lux5.jpg",
 	"text": "joyeux_noel.md",
-	"categories": [],
+	"tags": ["noel", "pochette", "réveillon"],
 	"date": "Sun, 04 Jan 2015 21:08:00"
 },
 {
@@ -76,7 +76,7 @@
 	"title": "Ma toute première boîte en Cartonnage!!!",
 	"image": "1.jpg",
 	"text": "ma_toute_boite_cartonnage.md",
-	"categories": [],
+	"tags": ["boîte", "cartonnage"],
 	"date": "Sat, 18 Oct 2014 21:28:00"
 },
 {
@@ -84,7 +84,7 @@
 	"title": "Mon Mei Tei à moi!",
 	"image": "image8.jpg",
 	"text": "mon_mei_tei.md",
-	"categories": [],
+	"tags": ["mei-tei"],
 	"date": "Fri, 07 Nov 2014 21:03:12"
 },
 {
@@ -92,7 +92,7 @@
 	"title": "Oh Oh OH Noël Approche!",
 	"image": "p1180978.jpg",
 	"text": "noel_approche.md",
-	"categories": [],
+	"tags": ["noel"],
 	"date": "Tue, 16 Dec 2014 21:09:03"
 },
 {
@@ -100,7 +100,7 @@
 	"title": "Le penseur",
 	"image": "image14.jpg",
 	"text": "penseur.md",
-	"categories": [],
+	"tags": ["peinture", "profond"],
 	"date": "Sun, 14 Sep 2014 20:47:17"
 },
 {
@@ -108,7 +108,7 @@
 	"title": "Une idée géniale !! :) Petite pochette enveloppe",
 	"image": "pouchette8.jpg",
 	"text": "petit_pochette_enveloppe.md",
-	"categories": [],
+	"tags": ["pochette", "idée"],
 	"date": "Thu, 08 Jan 2015 21:50:10"
 },
 {
@@ -116,7 +116,7 @@
 	"title": "Petite Sac Besace pour les sorties d'Ecole maternelle",
 	"image": "besace8.jpg",
 	"text": "petit_sac_besace.md",
-	"categories": [],
+	"tags": ["sac", "besace", "école", "maternelle"],
 	"date": "Mon, 05 Jan 2015 21:39:39"
 },
 {
@@ -124,7 +124,7 @@
 	"title": "Petit sac pour préparer la future rentrée de Dinis",
 	"image": "image15.jpg",
 	"text": "petit_sac_rentree_dinis.md",
-	"categories": [],
+	"tags": ["sac", "rentrée", "école"],
 	"date": "Tue, 21 Oct 2014 19:47:02"
 },
 {
@@ -132,7 +132,7 @@
 	"title": "Petite valisette à bijoux à chats",
 	"image": "image20.jpg",
 	"text": "petite_valisette_bijoux.md",
-	"categories": [],
+	"tags": ["valisette", "bijoux", "chats"],
 	"date": "Mon, 27 Oct 2014 20:47:33"
 },
 {
@@ -140,7 +140,7 @@
 	"title": "La pluie de comètes",
 	"image": "la-pluie-de-cometes.jpg",
 	"text": "pluie_cometes.md",
-	"categories": [],
+	"tags": ["pluie", "astronomie", "arts-plastiques"],
 	"date": "Tue, 07 Oct 2014 20:52:31"
 },
 {
@@ -148,7 +148,7 @@
 	"title": "Portefeuille en cartonnage! Et Ouiiii c'est possible!!!...",
 	"image": "image21.jpg",
 	"text": "portefeuille_cartonnnage.md",
-	"categories": [],
+	"tags": ["portefeuille", "cartonnage"],
 	"date": "Tue, 28 Oct 2014 21:53:58"
 },
 {
@@ -156,7 +156,7 @@
 	"title": "Allez venez rejoindre ce Projet Café Créatif accessible à tous!",
 	"image": "",
 	"text": "projet_cafe_creatif.md",
-	"categories": [],
+	"tags": ["café", "créatif", "projet", "annonce"],
 	"date": "Sun, 09 Nov 2014 16:06:39"
 },
 {
@@ -164,7 +164,7 @@
 	"title": "Le rêve martien",
 	"image": "le-reve-martien.jpg",
 	"text": "reve_martien.md",
-	"categories": [],
+	"tags": ["rêve", "peinture", "mars"],
 	"date": "Tue, 07 Oct 2014 20:52:34"
 },
 {
@@ -172,7 +172,7 @@
 	"title": "Le rêve",
 	"image": "le-reve.jpg",
 	"text": "reve.md",
-	"categories": [],
+	"tags": ["rêve", "peinture", "arts-plastiques"],
 	"date": "Tue, 07 Oct 2014 20:52:37"
 },
 {
@@ -180,7 +180,7 @@
 	"title": "Sac Cabas prêt pour le voyage!!",
 	"image": "sac21.jpg",
 	"text": "sac_cabas.md",
-	"categories": [],
+	"tags": ["sac", "monde", "voyage"],
 	"date": "Fri, 14 Nov 2014 12:06:25"
 },
 {
@@ -188,7 +188,7 @@
 	"title": "Sac maternité, tapis à langer et porte-clefs petit lapin",
 	"image": "image18.jpg",
 	"text": "sac_maternite.md",
-	"categories": [],
+	"tags": ["sac", "maternité", "tapis", "porte-clefs"],
 	"date": "Mon, 20 Oct 2014 19:03:50"
 },
 {
@@ -196,7 +196,7 @@
 	"title": "Sac mickey pour Damian",
 	"image": "image16.jpg",
 	"text": "sac_mickey_damian.md",
-	"categories": [],
+	"tags": ["sac", "mickey"],
 	"date": "Sun, 02 Nov 2014 20:44:44"
 },
 {
@@ -204,7 +204,7 @@
 	"title": "Sac pirate pour porter le doudou de mon fils Gautier",
 	"image": "image17.jpg",
 	"text": "sac_pirate_gautier.md",
-	"categories": [],
+	"tags": ["sac", "pirate", "doudou"],
 	"date": "Sat, 01 Nov 2014 20:42:29"
 },
 {
@@ -212,7 +212,7 @@
 	"title": "Sac pour enfants de 2 ans!",
 	"image": "sac.jpg",
 	"text": "sac_pour_enfant_2_ans.md",
-	"categories": [],
+	"tags": ["sac", "princesse"],
 	"date": "Wed, 14 Jan 2015 22:22:11"
 },
 {
@@ -220,7 +220,7 @@
 	"title": "Kit sac petite princesse et son portfolio à crayons!",
 	"image": "image5.jpg",
 	"text": "sac_princesse.md",
-	"categories": [],
+	"tags": ["sac", "kit", "princesse", "crayons", "portfolio"],
 	"date": "Fri, 31 Oct 2014 20:38:35"
 },
 {
@@ -228,7 +228,7 @@
 	"title": "Le secret",
 	"image": "image13.jpg",
 	"text": "secret.md",
-	"categories": [],
+	"tags": ["secret", "peinture", "intriguant"],
 	"date": "Wed, 08 Oct 2014 19:50:36"
 },
 {
@@ -236,7 +236,7 @@
 	"title": "Seule",
 	"image": "image12.jpg",
 	"text": "seule.md",
-	"categories": [],
+	"tags": ["intriguant", "peinture"],
 	"date": "Tue, 14 Oct 2014 21:59:12"
 },
 {
@@ -244,7 +244,7 @@
 	"title": "Toto Bag version simplifiée!",
 	"image": "toto.jpg",
 	"text": "toto_bag_version_simplifiee.md",
-	"categories": [],
+	"tags": ["sac", "chats"],
 	"date": "Sat, 10 Jan 2015 22:01:25"
 },
 {
@@ -252,7 +252,7 @@
 	"title": "Tuto: Plaid Mondrian tout doux",
 	"image": "image6.jpg",
 	"text": "tuto_plaid_mondrian.md",
-	"categories": [],
+	"tags": ["mondrian", "plaid", "doux"],
 	"date": "Sat, 11 Oct 2014 21:07:42"
 },
 {
@@ -260,7 +260,7 @@
 	"title": "Une autre poupée doudou",
 	"image": "p1180992.jpg",
 	"text": "une_autre_poupee_doudou.md",
-	"categories": [],
+	"tags": ["poupée", "doux"],
 	"date": "Mon, 12 Jan 2015 22:09:20"
 },
 {
@@ -268,7 +268,7 @@
 	"title": "Valisette princesse pour une princesse! ;)",
 	"image": "img_2201.jpg",
 	"text": "valisette_princesse.md",
-	"categories": [],
+	"tags": ["valisette", "princesse"],
 	"date": "Thu, 30 Oct 2014 20:59:31"
 },
 {
@@ -276,7 +276,7 @@
 	"title": "« le visage », le loup » et « l’arc de triomphe »",
 	"image": "image10.jpg",
 	"text": "visage_loup_arc_triomphe.md",
-	"categories": [],
+	"tags": ["visage", "animaux", "peinture", "arts-plastiques"],
 	"date": "Fri, 03 Oct 2014 22:01:15"
 }
 ]
