@@ -1,21 +1,52 @@
 {{define "content"}}
 <div class="container">
     <div class="row">
-      <div class="col-sm-12">
-        <div class="grid">
-            {{range .}}<a href="/post/{{.ID}}"><div class="grid-item text-center">
-              <img src="{{.Image | thumbnail}}">
-              <div class="caption">
-                <h4>{{.Title}}</h4>
-              </div>
-            </div></a>{{end}}
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="grid">
+              {{range $i, $post := .Posts}}<div class="grid-item col-sm-6">
+                  <div class="thumbnail text-center">
+                    <a href="/post/{{$post.ID}}"><img src="{{$post.Image | thumbnail}}"></a>
+                    <div class="caption">
+                      <h3>{{$post.Title}}</h3>
+                      <p>{{$post.Date | friendlyDater}}</p>
+                      <p><a href="/post/{{.ID}}" class="btn btn-default" role="button">En savoir plus</a></p>
+                    </div>
+                  </div>
+              </div>{{end}}
+            </div>
           </div>
+        </div>
       </div>
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">Présentation</div>
+          <div class="panel-body">
+              Descriptif
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">Recherche</div>
+          <div class="panel-body">
+              Rajouter une barre de recherche
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">Catégories</div>
+          <div class="panel-body">
+              {{range $i, $cat := .Categories}}<p><a href="/blog/{{$cat.Title}}"></a></p>{{end}}
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 {{end}}
 
+{{define "scripts"}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.8.0/holder.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="/static/js/app.js"></script>
+{{end}}

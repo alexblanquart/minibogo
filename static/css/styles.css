@@ -50,14 +50,13 @@ section {
 /******* Center caption of grid item on the image *********/
 /* TODO see later to make caption vertically align */
 .grid-item {
-  position: relative;
+  /*position: relative;*/
 }
 .grid-item .caption {
-  position: absolute;
+  /*position: absolute;
   top: 40%;
-  width: 100%;
-  /*opacity: 0.8;*/
+  width: 100%;*/
 }
 .grid-item .caption h4{
-  color: #ffffff;
+  /*color: #ffffff;*/
 }

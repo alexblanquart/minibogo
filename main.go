@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"time"
 
+	"github.com/alexblanquart/minibo/dater"
 	"github.com/russross/blackfriday"
 )
 
@@ -24,7 +24,7 @@ type IndexContent struct {
 }
 
 // Initialize some global variables
-var categories = Categories{
+var categories = []Category{
 	{Title: "Univers jouets enfants", Image: "coin_jouets_poupees.png"},
 	{Title: "Mes projets en cours", Image: "projets_en_cours.png"},
 	{Title: "Aux pinceaux!", Image: "aux_pinceaux.png"},
@@ -42,20 +42,25 @@ type Post struct {
 	Content []byte
 }
 
-type BlogContent struct {
-	Posts []Post
-}
-
-// Compile all templates and cache them. Add special pipelines.
-//var templates = template.Must(template.New("main").Funcs(template.FuncMap{"markDown": markDowner, "time": userFriendlyTimer, "thumbnail": thumbnailer}).ParseGlob("templates/*"))
-var baseTemplate = template.Must(template.New("base").Funcs(template.FuncMap{"markDown": markDowner, "time": userFriendlyTimer, "thumbnail": thumbnailer}).ParseFiles("templates/base.html", "templates/header.html", "templates/navigation.html", "templates/footer.html"))
-
+var baseTemplate = getBaseTemplate()
 var indexTempl = getTemplate("templates/index.html", "templates/categories.html", "templates/news.html")
 var blogTempl = getTemplate("templates/blog.html")
 var postTempl = getTemplate("templates/post.html")
 var aboutTempl = getTemplate("templates/about.html")
 var contactTempl = getTemplate("templates/contact.html")
 
+// Return the complete list of current funcs used through all the templates
+func getAllFuncs() template.FuncMap {
+	return template.FuncMap{"markDown": markDowner, "friendlyDater": dater.FriendlyDater, "thumbnail": thumbnailer}
+}
+
+// Return the base template presently used to compute all templates being executed
+func getBaseTemplate() *template.Template {
+	return template.Must(template.New("base").Funcs(getAllFuncs()).ParseFiles("templates/base.html",
+		"templates/header.html", "templates/navigation.html", "templates/footer.html"))
+}
+
+// Add specified templates to the base template to create the final template to be executed later
 func getTemplate(filenames ...string) *template.Template {
 	return template.Must(template.Must(baseTemplate.Clone()).ParseFiles(filenames...))
 }
@@ -67,7 +72,7 @@ func thumbnailer(path string) string {
 	nameWithoutExt := name[:len(name)-len(ext)]
 	newPath := "static/images/thumbs/" + nameWithoutExt + ".png"
 	if _, err := os.Stat(newPath); os.IsNotExist(err) {
-		newPath = "holder.js/400x340"
+		newPath = "holder.js/340x340"
 	}
 	return newPath
 }
@@ -76,16 +81,6 @@ func thumbnailer(path string) string {
 func markDowner(content []byte) template.HTML {
 	s := blackfriday.MarkdownCommon(content)
 	return template.HTML(s)
-}
-
-// Transform date in from a specific layout into another one more friendly for users
-func userFriendlyTimer(date string) string {
-	parsed, err := time.Parse("Mon, 02 Jan 2006 15:04:05", date)
-	if err == nil {
-		return parsed.Format("02/01/2006") // see for internationalization later
-	} else {
-		return date
-	}
 }
 
 func renderTemplate(w http.ResponseWriter, tmpl *template.Template, data interface{}) {
@@ -117,13 +112,18 @@ func getContent(name string) ([]byte, error) {
 	return ioutil.ReadFile("content/" + name)
 }
 
+type BlogContent struct {
+	Posts      []Post
+	Categories []Category
+}
+
 func blogHandler(w http.ResponseWriter, r *http.Request) {
 	posts, err := getPosts()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	renderTemplate(w, blogTempl, posts)
+	renderTemplate(w, blogTempl, BlogContent{Posts: posts, Categories: categories})
 }
 
 func getPosts() ([]Post, error) {
