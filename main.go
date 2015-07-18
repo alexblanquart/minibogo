@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"sort"
 
 	"github.com/alexblanquart/minibo/dater"
 	"github.com/russross/blackfriday"
@@ -115,8 +116,9 @@ func getContent(name string) ([]byte, error) {
 }
 
 type BlogContent struct {
-	Posts []Post
-	Tags  []string
+	Posts  []Post
+	Recent []Post
+	Tags   []string
 }
 
 func blogHandler(w http.ResponseWriter, r *http.Request) {
@@ -125,6 +127,7 @@ func blogHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	// gather tags
 	var tags = []string{"tous"}
 	var setOfTags = map[string]bool{}
 	for _, p := range posts {
@@ -136,6 +139,7 @@ func blogHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 	}
+	// filtered posts only corresponding to tag
 	tag := r.URL.Path[6:] // from pattern "/blog/{{tag}}"
 	var filtered = []Post{}
 	if tag != "" && tag != "tous" {
@@ -150,9 +154,16 @@ func blogHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		filtered = posts
 	}
-
-	renderTemplate(w, blogTempl, BlogContent{Posts: filtered, Tags: tags})
+	// get 5 mosts recent posts
+	recent := posts[:5]
+	renderTemplate(w, blogTempl, BlogContent{Posts: filtered, Recent: recent, Tags: tags})
 }
+
+type ByDate []Post
+
+func (d ByDate) Len() int           { return len(d) }
+func (d ByDate) Swap(i, j int)      { d[i], d[j] = d[j], d[i] }
+func (d ByDate) Less(i, j int) bool { return dater.Parse(d[i].Date).After(dater.Parse(d[j].Date)) }
 
 func getPosts() ([]Post, error) {
 	postsAsJson, err := ioutil.ReadFile("content/posts.json")
@@ -163,6 +174,8 @@ func getPosts() ([]Post, error) {
 	if err := json.Unmarshal(postsAsJson, &posts); err != nil {
 		return nil, err
 	}
+	// sort posts by date : the most recent first!
+	sort.Sort(ByDate(posts))
 	return posts, nil
 }
 

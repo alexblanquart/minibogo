@@ -22,12 +22,13 @@ var months = map[string]string{
 
 // Transform date in from a specific layout (Mon, 02 Jan 2006 15:04:05) into another one more friendly for users : 2 Janvier 2014
 func FriendlyDater(date string) string {
-	parsed, err := time.Parse("Mon, 02 Jan 2006 15:04:05", date)
-	if err == nil {
-		year, month, day := parsed.Date()
-		translatedMonth, _ := months[month.String()]
-		return strconv.Itoa(day) + " " + translatedMonth + " " + strconv.Itoa(year)
-	} else {
-		return date
-	}
+	parsed := Parse(date)
+	year, month, day := parsed.Date()
+	translatedMonth, _ := months[month.String()]
+	return strconv.Itoa(day) + " " + translatedMonth + " " + strconv.Itoa(year)
+}
+
+func Parse(date string) time.Time {
+	parsed, _ := time.Parse("Mon, 02 Jan 2006 15:04:05", date)
+	return parsed
 }
