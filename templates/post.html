@@ -1,13 +1,29 @@
 {{define "content"}}
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 text-center">
-            <h1>{{.Title}}</h1>
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>{{.Post.Title}}</h1>
+                    <p><em>{{.Post.Date | date}}</em></p>
+                    <p><strong>Mots clés</strong> {{range $i, $tag := .Post.Tags}}<a href="/blog/{{$tag}}" class="btn btn-link">{{$tag}}</a>{{end}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <br>
+                    {{.Post.Content | markDown}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <br>
+                    <strong>Partager</strong> <a href="http://twitter.com/home?status={{.CurrentURL}}" title="Share on Twitter" target="_blank" class="btn btn-twitter"><i class="fa fa-twitter"></i> Twitter</a> <a href="https://www.facebook.com/sharer/sharer.php?u={{.CurrentURL}}" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-8 col-sm-offset-1">
-            {{.Content | markDown}}
+        <div class="col-sm-4"> <!-- see later to affix it -->
+            {{template "sidebar" .MetaBlog}}
         </div>
     </div>
 </div>

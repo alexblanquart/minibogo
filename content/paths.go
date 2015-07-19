@@ -8,6 +8,8 @@ import (
 	"strings"
 )
 
+// A specific function replacing every line refering to images from ![](image.jpg) to ![](/static/images/thumbs/image.png) 
+// Not meant to be used more than once. Just to prepare the original content based on the present workspace.
 func imagesPaths(contentPath string, info os.FileInfo, err error) error {
 	if info.IsDir() || !strings.HasSuffix(contentPath, ".md") {
 		// Directory and non markdown file are just ignored

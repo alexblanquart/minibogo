@@ -1,0 +1,20 @@
+{{define "sidebar"}}
+<div class="panel panel-default">
+    <div class="panel-heading">Recherche</div>
+   	<div class="panel-body">
+        Rajouter une barre de recherche
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Articles récents</div>
+    <div class="panel-body">
+       	{{range $i, $post := .Recent}}<p><a href="/post/{{$post.ID}}">{{$post.Title}}</a></p>{{end}}
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Mots clés</div>
+    <div class="panel-body">
+        {{range $i, $tag := .Tags}}<button type="button" class="btn btn-link"><a href="/blog/{{$tag}}">{{$tag}}</a></button>{{end}}
+    </div>
+</div>
+{{end}}

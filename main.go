@@ -18,20 +18,24 @@ type Category struct {
 	Image string
 }
 
-type Categories []Category
-
 type IndexContent struct {
-	Categories Categories
+	Categories []Category
 }
 
-// Initialize some global variables
-var categories = []Category{
-	{Title: "Univers jouets enfants", Image: "coin_jouets_poupees.png"},
-	{Title: "Mes projets en cours", Image: "projets_en_cours.png"},
-	{Title: "Aux pinceaux!", Image: "aux_pinceaux.png"},
-	{Title: "Mes plaids tout doux", Image: "patc_quilt_plaid.png"},
-	{Title: "Mon coin couture", Image: "couture1.png"},
-	{Title: "Mes petits objets en carton", Image: "carton_categ.png"},
+type PostContent struct {
+	Post Post
+	MetaBlog
+	CurrentURL string
+}
+
+type MetaBlog struct {
+	Recent []Post
+	Tags   []string
+}
+
+type BlogContent struct {
+	Posts []Post
+	MetaBlog
 }
 
 type Post struct {
@@ -44,16 +48,19 @@ type Post struct {
 	Content []byte
 }
 
-var baseTemplate = getBaseTemplate()
-var indexTempl = getTemplate("templates/index.html", "templates/categories.html", "templates/news.html")
-var blogTempl = getTemplate("templates/blog.html")
-var postTempl = getTemplate("templates/post.html")
-var aboutTempl = getTemplate("templates/about.html")
-var contactTempl = getTemplate("templates/contact.html")
+var (
+	categories    []Category
+	posts, recent []Post
+	tags          []string
+	metaBlog      MetaBlog
+	host          string = "http://localhost:8080" // TODO: to change when live!
+
+	baseTempl, indexTempl, blogTempl, postTempl, aboutTempl, contactTempl *template.Template
+)
 
 // Return the complete list of current funcs used through all the templates
 func getAllFuncs() template.FuncMap {
-	return template.FuncMap{"markDown": markDowner, "friendlyDater": dater.FriendlyDater}
+	return template.FuncMap{"markDown": markDowner, "date": dater.FriendlyDater}
 }
 
 // Return the base template presently used to compute all templates being executed
@@ -64,7 +71,7 @@ func getBaseTemplate() *template.Template {
 
 // Add specified templates to the base template to create the final template to be executed later
 func getTemplate(filenames ...string) *template.Template {
-	return template.Must(template.Must(baseTemplate.Clone()).ParseFiles(filenames...))
+	return template.Must(template.Must(getBaseTemplate().Clone()).ParseFiles(filenames...))
 }
 
 // From a path, try to find the thumbnail associated image in the special directory
@@ -111,34 +118,12 @@ func aboutHandler(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, aboutTempl, content)
 }
 
+// Read markdown file inside content folder
 func getContent(name string) ([]byte, error) {
 	return ioutil.ReadFile("content/" + name)
 }
 
-type BlogContent struct {
-	Posts  []Post
-	Recent []Post
-	Tags   []string
-}
-
 func blogHandler(w http.ResponseWriter, r *http.Request) {
-	posts, err := getPosts()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	// gather tags
-	var tags = []string{"tous"}
-	var setOfTags = map[string]bool{}
-	for _, p := range posts {
-		for _, t := range p.Tags {
-			if !setOfTags[t] {
-				tags = append(tags, t)
-				setOfTags[t] = true
-			}
-		}
-
-	}
 	// filtered posts only corresponding to tag
 	tag := r.URL.Path[6:] // from pattern "/blog/{{tag}}"
 	var filtered = []Post{}
@@ -154,17 +139,10 @@ func blogHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		filtered = posts
 	}
-	// get 5 mosts recent posts
-	recent := posts[:5]
-	renderTemplate(w, blogTempl, BlogContent{Posts: filtered, Recent: recent, Tags: tags})
+	renderTemplate(w, blogTempl, BlogContent{Posts: filtered, MetaBlog: metaBlog})
 }
 
-type ByDate []Post
-
-func (d ByDate) Len() int           { return len(d) }
-func (d ByDate) Swap(i, j int)      { d[i], d[j] = d[j], d[i] }
-func (d ByDate) Less(i, j int) bool { return dater.Parse(d[i].Date).After(dater.Parse(d[j].Date)) }
-
+// Return all posts sorted by date, by reading the temporay json file
 func getPosts() ([]Post, error) {
 	postsAsJson, err := ioutil.ReadFile("content/posts.json")
 	if err != nil {
@@ -174,18 +152,18 @@ func getPosts() ([]Post, error) {
 	if err := json.Unmarshal(postsAsJson, &posts); err != nil {
 		return nil, err
 	}
-	// sort posts by date : the most recent first!
 	sort.Sort(ByDate(posts))
 	return posts, nil
 }
 
+type ByDate []Post
+
+func (d ByDate) Len() int           { return len(d) }
+func (d ByDate) Swap(i, j int)      { d[i], d[j] = d[j], d[i] }
+func (d ByDate) Less(i, j int) bool { return dater.Parse(d[i].Date).After(dater.Parse(d[j].Date)) }
+
 func postHandler(w http.ResponseWriter, r *http.Request) {
 	id := r.URL.Path[6:] // from pattern "/post/{{ID}}"
-	posts, err := getPosts()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
 	var post = Post{}
 	for _, p := range posts {
 		if p.ID == id {
@@ -198,7 +176,45 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	post.Content = content
-	renderTemplate(w, postTempl, post)
+	currentURL := host + r.URL.Path
+	renderTemplate(w, postTempl, PostContent{Post: post, MetaBlog: metaBlog, CurrentURL: currentURL})
+}
+
+// For now there is no database!
+func init() {
+	// main categories
+	categories = []Category{
+		{Title: "Univers jouets enfants", Image: "coin_jouets_poupees.png"},
+		{Title: "Mes projets en cours", Image: "projets_en_cours.png"},
+		{Title: "Aux pinceaux!", Image: "aux_pinceaux.png"},
+		{Title: "Mes plaids tout doux", Image: "patc_quilt_plaid.png"},
+		{Title: "Mon coin couture", Image: "couture1.png"},
+		{Title: "Mes petits objets en carton", Image: "carton_categ.png"},
+	}
+	// all posts sorted by date!
+	posts, _ = getPosts()
+	// get 5 mosts recent posts
+	recent = posts[:5]
+	// gather tags
+	tags = []string{"tous"}
+	var setOfTags = map[string]bool{}
+	for _, p := range posts {
+		for _, t := range p.Tags {
+			if !setOfTags[t] {
+				tags = append(tags, t)
+				setOfTags[t] = true
+			}
+		}
+	}
+	// recent + tags
+	metaBlog = MetaBlog{Recent: recent, Tags: tags}
+
+	// templates
+	indexTempl = getTemplate("templates/index.html", "templates/categories.html", "templates/news.html")
+	blogTempl = getTemplate("templates/blog.html", "templates/sidebar.html")
+	postTempl = getTemplate("templates/post.html", "templates/sidebar.html")
+	aboutTempl = getTemplate("templates/about.html")
+	contactTempl = getTemplate("templates/contact.html")
 }
 
 func main() {
