@@ -6,9 +6,9 @@ J’ai du improviser mes cadeaux de Noël… Milles mercis au patron cours de co
 
 Voici les jolis résultats de ma collection :)
 
-![](toto.jpg)
-![](toto1.jpg)
-![](toto4.jpg)
-![](toto5.jpg)
-![](toto6.jpg)
-![](toto77.jpg)
+![](/static/images/thumbs/toto.png)
+![](/static/images/thumbs/toto1.png)
+![](/static/images/thumbs/toto4.png)
+![](/static/images/thumbs/toto5.png)
+![](/static/images/thumbs/toto6.png)
+![](/static/images/thumbs/toto77.png)

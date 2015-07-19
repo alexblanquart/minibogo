@@ -4,4 +4,4 @@ En fait j’ai fait un mini coussin que j’ai collé à la boite en carton !!!
 
 Tout le monde l’adore… je m ‘en sers pour mettre mes montres !!!
 
-![](image22.jpg)
+![](/static/images/thumbs/image22.png)

@@ -4,8 +4,8 @@ J’ai utilisé pour la première fois la technique du transfert.. j’ai achet�
 
 Pour mon première c’est pas mal l’effet non ? Qu’en penses-vous?
 
-![](sac.jpg)
-![](sac2.jpg)
-![](sac3.jpg)
-![](sac44.jpg)
-![](sac1.jpg)
+![](/static/images/thumbs/sac.png)
+![](/static/images/thumbs/sac2.png)
+![](/static/images/thumbs/sac3.png)
+![](/static/images/thumbs/sac44.png)
+![](/static/images/thumbs/sac1.png)

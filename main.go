@@ -53,7 +53,7 @@ var contactTempl = getTemplate("templates/contact.html")
 
 // Return the complete list of current funcs used through all the templates
 func getAllFuncs() template.FuncMap {
-	return template.FuncMap{"markDown": markDowner, "friendlyDater": dater.FriendlyDater, "thumbnail": thumbnailer}
+	return template.FuncMap{"markDown": markDowner, "friendlyDater": dater.FriendlyDater}
 }
 
 // Return the base template presently used to compute all templates being executed

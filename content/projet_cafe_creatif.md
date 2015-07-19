@@ -1,6 +1,6 @@
 Comme beaucoup de mes proches le savent, je suis en pleine création d’un café créatif ACCESSIBLE A TOUS que j’espère être un lieu convivial, familial, solidaire au profit de tous, qui aiment créer!!!!
 
-![](cafecreadtifh1.jpg)
+![](/static/images/thumbs/cafecreadtifh1.png)
 
 J’aimerais le faire à Lomme, mon quartier ou aux alentours.
 Le projet me tient beaucoup à coeur puisqu’il apportera des nouveautés dans le ville et aussi une communauté encore plus unie.

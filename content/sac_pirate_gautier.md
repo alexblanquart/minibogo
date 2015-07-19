@@ -6,4 +6,4 @@ En fait je n’avais pas de tissu aux rayures blanches et bleues et du coup j’
 
 Mon fils adore ce sac, même aujourd’hui (1 an après il le porte partout puisqu’il adore enfilé son doudou dans la pochette devant !!!!
 
-![](image17.jpg)
+![](/static/images/thumbs/image17.png)

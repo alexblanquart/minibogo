@@ -1,4 +1,4 @@
-![](image12.jpg)
+![](/static/images/thumbs/image12.png)
 
 Ce tableau à la base me représente « Seule »! J’ai utilisé la technique en huile ;)
 

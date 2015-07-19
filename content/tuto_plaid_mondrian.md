@@ -6,6 +6,6 @@ Je l’ai offert l’année dernière à Noel à ma belle mère, elle est fan de
 
 Donc je vous propose de découvrir le tutoriel :) (Voir Catégorie Conditions d’utilisation de ce Blog.)
 
-![](tuto-mondrian1.jpg)
-![](tuto-mondrian2.jpg)
-![](image6.jpg)
+![](/static/images/thumbs/tuto-mondrian1.png)
+![](/static/images/thumbs/tuto-mondrian2.png)
+![](/static/images/thumbs/image6.png)

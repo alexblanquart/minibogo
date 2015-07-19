@@ -1,4 +1,4 @@
-![](la-pluie-de-cometes.jpg)
+![](/static/images/thumbs/la-pluie-de-cometes.png)
 
 Coucou les amis voici un tableau que j’ai offert à ma belle mère, elle est fan du noir, de tout ce qui est moderne, abstrait … j’ai donc fait «la pluie de comètes» …
 

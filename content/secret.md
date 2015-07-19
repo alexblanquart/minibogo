@@ -1,4 +1,4 @@
-![](image13.jpg)
+![](/static/images/thumbs/image13.png)
 
 Ce tableau je l’ai en deux versions une à huile (celle-ci) et une autre en acrylique qui est au New Jersey dans la maison de mon best friend forever !!! ;))
 

@@ -8,4 +8,4 @@ Cela devait être un cadeau pour ma belle mère, mais pour finir je l’ai gard�
 
 Qu’en pensez-vous ? ;)
 
-![](image14.jpg)
+![](/static/images/thumbs/image14.png)

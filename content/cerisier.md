@@ -6,4 +6,4 @@ L’exercice consiste en réalisé à l’aide d’une photographie de réaliser
 
 C’est plutôt pas mal non ?! :)
 
-![](image7.jpg)
+![](/static/images/thumbs/image7.png)
