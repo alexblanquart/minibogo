@@ -1,0 +1,47 @@
+{{define "content"}}
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+          <h1>Mes créations</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        {{range $i, $product := .Products}}
+        <div id="collapse_{{$i}}" class="collapse row description">
+          <div class="col-sm-6">
+            <img src="{{$product.Image | holder}}">
+          </div>
+          <div class="col-sm-6">
+            <button type="button" class="close" 
+              data-dismiss="alert" aria-label="Close"
+              data-toggle="collapse" data-target="#collapse_{{$i}}" aria-expanded="false" aria-controls="collapse_{{$i}}"><span aria-hidden="true">&times;</span></button>
+            <h3>{{$product.Title}}</h3>
+            <p>{{$product.Description}}</p>
+            <p><a href="" class="btn btn-default" role="button">En savoir plus</a></p>
+          </div>
+        </div>
+        {{end}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="grid">
+          {{range $i, $product := .Products}}
+          <div class="grid-item col-sm-4">
+            <a data-toggle="collapse" href="#collapse_{{$i}}" aria-expanded="false" aria-controls="collapse_{{$i}}"><img src="{{$product.Image | holder}}" class="thumbnail"></a>
+          </div>
+          {{end}}
+      </div>
+    </div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.8.0/holder.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="/static/js/app.js"></script>
+{{end}}

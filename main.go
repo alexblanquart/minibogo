@@ -48,19 +48,31 @@ type Post struct {
 	Content []byte
 }
 
+type Product struct {
+	ID          string `json:"id"`
+	Title       string `json:"title"`
+	Image       string `json:"image"`
+	Description string `json:"description"`
+}
+
+type ProductsContent struct {
+	Products []Product
+}
+
 var (
 	categories    []Category
 	posts, recent []Post
 	tags          []string
 	metaBlog      MetaBlog
 	host          string = "http://localhost:8080" // TODO: to change when live!
+	products      []Product
 
-	baseTempl, indexTempl, blogTempl, postTempl, aboutTempl, contactTempl *template.Template
+	baseTempl, indexTempl, blogTempl, postTempl, aboutTempl, contactTempl, productsTempl *template.Template
 )
 
 // Return the complete list of current funcs used through all the templates
 func getAllFuncs() template.FuncMap {
-	return template.FuncMap{"markDown": markDowner, "date": dater.FriendlyDater}
+	return template.FuncMap{"markDown": markDowner, "date": dater.FriendlyDater, "holder": holder}
 }
 
 // Return the base template presently used to compute all templates being executed
@@ -72,6 +84,14 @@ func getBaseTemplate() *template.Template {
 // Add specified templates to the base template to create the final template to be executed later
 func getTemplate(filenames ...string) *template.Template {
 	return template.Must(template.Must(getBaseTemplate().Clone()).ParseFiles(filenames...))
+}
+
+func holder(path string) string {
+	if _, err := os.Stat(path[1:]); os.IsNotExist(err) {
+		return "holder.js/340x340"
+	} else {
+		return path
+	}
 }
 
 // From a path, try to find the thumbnail associated image in the special directory
@@ -144,7 +164,7 @@ func blogHandler(w http.ResponseWriter, r *http.Request) {
 
 // Return all posts sorted by date, by reading the temporay json file
 func getPosts() ([]Post, error) {
-	postsAsJson, err := ioutil.ReadFile("content/posts.json")
+	postsAsJson, err := ioutil.ReadFile("posts.json")
 	if err != nil {
 		return nil, err
 	}
@@ -180,6 +200,23 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, postTempl, PostContent{Post: post, MetaBlog: metaBlog, CurrentURL: currentURL})
 }
 
+// Return all products, by reading the temporay json file
+func getProducts() ([]Product, error) {
+	productsAsJson, err := ioutil.ReadFile("products.json")
+	if err != nil {
+		return nil, err
+	}
+	products := []Product{}
+	if err := json.Unmarshal(productsAsJson, &products); err != nil {
+		return nil, err
+	}
+	return products, nil
+}
+
+func productsHandler(w http.ResponseWriter, r *http.Request) {
+	renderTemplate(w, productsTempl, ProductsContent{Products: products})
+}
+
 // For now there is no database!
 func init() {
 	// main categories
@@ -208,6 +245,8 @@ func init() {
 	}
 	// recent + tags
 	metaBlog = MetaBlog{Recent: recent, Tags: tags}
+	// all products
+	products, _ = getProducts()
 
 	// templates
 	indexTempl = getTemplate("templates/index.html", "templates/categories.html", "templates/news.html")
@@ -215,6 +254,7 @@ func init() {
 	postTempl = getTemplate("templates/post.html", "templates/sidebar.html")
 	aboutTempl = getTemplate("templates/about.html")
 	contactTempl = getTemplate("templates/contact.html")
+	productsTempl = getTemplate("templates/products.html")
 }
 
 func main() {
@@ -223,6 +263,7 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	// Routing
+	http.HandleFunc("/products", productsHandler)
 	http.HandleFunc("/contact", contactHandler)
 	http.HandleFunc("/about", aboutHandler)
 	http.HandleFunc("/blog/", blogHandler)
