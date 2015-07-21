@@ -59,6 +59,16 @@ type ProductsContent struct {
 	Products []Product
 }
 
+type Tutorial struct {
+	ID    string `json:"id"`
+	Title string `json:"title"`
+	Video string `json:"video"`
+}
+
+type TutorialsContent struct {
+	Tutorials []Tutorial
+}
+
 var (
 	categories    []Category
 	posts, recent []Post
@@ -66,8 +76,9 @@ var (
 	metaBlog      MetaBlog
 	host          string = "http://localhost:8080" // TODO: to change when live!
 	products      []Product
+	tutorials     []Tutorial
 
-	baseTempl, indexTempl, blogTempl, postTempl, aboutTempl, contactTempl, productsTempl *template.Template
+	baseTempl, indexTempl, blogTempl, postTempl, aboutTempl, contactTempl, productsTempl, tutorialsTempl *template.Template
 )
 
 // Return the complete list of current funcs used through all the templates
@@ -217,6 +228,23 @@ func productsHandler(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, productsTempl, ProductsContent{Products: products})
 }
 
+func tutorialsHandler(w http.ResponseWriter, r *http.Request) {
+	renderTemplate(w, tutorialsTempl, TutorialsContent{Tutorials: tutorials})
+}
+
+// Return all tutorials, by reading the temporay json file
+func getTutorials() ([]Tutorial, error) {
+	tutorialsAsJson, err := ioutil.ReadFile("tutorials.json")
+	if err != nil {
+		return nil, err
+	}
+	tutorials := []Tutorial{}
+	if err := json.Unmarshal(tutorialsAsJson, &tutorials); err != nil {
+		return nil, err
+	}
+	return tutorials, nil
+}
+
 // For now there is no database!
 func init() {
 	// main categories
@@ -247,6 +275,8 @@ func init() {
 	metaBlog = MetaBlog{Recent: recent, Tags: tags}
 	// all products
 	products, _ = getProducts()
+	// all tutorials
+	tutorials, _ = getTutorials()
 
 	// templates
 	indexTempl = getTemplate("templates/index.html", "templates/categories.html", "templates/news.html")
@@ -255,6 +285,7 @@ func init() {
 	aboutTempl = getTemplate("templates/about.html")
 	contactTempl = getTemplate("templates/contact.html")
 	productsTempl = getTemplate("templates/products.html")
+	tutorialsTempl = getTemplate("templates/tutorials.html")
 }
 
 func main() {
@@ -263,6 +294,7 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	// Routing
+	http.HandleFunc("/tutorials", tutorialsHandler)
 	http.HandleFunc("/products", productsHandler)
 	http.HandleFunc("/contact", contactHandler)
 	http.HandleFunc("/about", aboutHandler)
