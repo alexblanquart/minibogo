@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-sm-8">
             <div class="row">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-12">
                     <h1>{{.Post.Title}}</h1>
                     <p><em>{{.Post.Date | date}}</em></p>
                     <p><i class="fa fa-tags"></i> {{range $i, $tag := .Post.Tags}}<a href="/blog/{{$tag}}" class="btn btn-link">{{$tag}}</a>{{end}}</p>
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-12">
                     <br>
                     <strong>Partager</strong> <a href="http://twitter.com/home?status={{.CurrentURL}}" title="Share on Twitter" target="_blank" class="btn btn-twitter"><i class="fa fa-twitter"></i> Twitter</a> <a href="https://www.facebook.com/sharer/sharer.php?u={{.CurrentURL}}" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
                 </div>

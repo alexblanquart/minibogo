@@ -53,6 +53,7 @@ type Product struct {
 	Title       string `json:"title"`
 	Image       string `json:"image"`
 	Description string `json:"description"`
+	Post        string `json:"post"`
 }
 
 type ProductsContent struct {

@@ -36,10 +36,10 @@ section {
 
 /******* Get rid of borders *********/
 .thumbnail {
-  border: none;
+  /*border: none;*/
 }
 .panel {
-  border: none;
+  /*border: none;*/
 }
 
 /******* Options for masonry *********/
