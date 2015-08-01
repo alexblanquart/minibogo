@@ -1,0 +1,18 @@
+{{define "content"}}
+<div class="container">
+    <div class="row">
+    	<div class="col-sm-12 text-center">
+        	<h1>Mes tutoriels</h1>
+      	</div>
+    </div>
+    <div class="row">
+    	{{range $i, $tuto := .Tutorials}}
+    	<div class="col-sm-6">
+    		<div class="thumnail embed-responsive embed-responsive-16by9">
+  				<iframe class="embed-responsive-item" src="{{$tuto.Video}}" allowfullscreen></iframe>
+			</div>
+    	</div>
+    	{{end}}
+    </div>
+</div>
+{{end}}
